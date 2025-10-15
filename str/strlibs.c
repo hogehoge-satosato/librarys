@@ -117,3 +117,114 @@ char *strrstr(char *s1, const char *s2)
     }
     return NULL;
 }
+
+char *strinsch(char *s, size_t idx, int ch)
+{
+    size_t len = strlen(s);
+
+    if (idx <= len++)
+    {
+        for (size_t i = len; i > idx; --i)
+        {
+            s[i] = s[i -1];
+        }
+        s[idx] = ch;
+    }
+    return s;
+}
+
+char *strinsstr(char *s1, size_t idx, const char *s2)
+{
+    size_t len1 = strlen(s1);
+    size_t len2 = strlen(s2);
+
+    if (idx <= len1 && len2 > 0)
+    {
+        for (size_t i = len1; i >= idx; --i)
+        {
+            s1[i + len2] = s1[i];
+        }
+        
+        for (size_t i = 0; i < len2; i++)
+        {
+            s1[idx + i] = s2[i];
+        }
+    }
+    return s1;
+}
+
+char *strdelch(char *s, size_t idx)
+{
+    size_t len = strlen(s);
+    if (idx < len)
+    {
+        for (size_t i = idx; i < len; i++)
+        {
+            s[i] = s[i + 1];
+        }
+    }
+    return s;
+}
+
+char *strdelchs(char *s, size_t idx, size_t n)
+{
+    size_t len = strlen(s);
+
+    if (idx < len)
+    {
+        size_t m = (n > len - idx) ? len - idx : n;
+        for (size_t i = idx; i < len; i++)
+        {
+            s[i] = s[i + m];
+        }
+    }
+    return s;
+}
+
+char *strrvs(char *s)
+{
+    char *p = s;
+    char *save = s;
+
+    while (*p)
+    {
+        p++;
+    }
+
+    if (p != s)
+    {
+        p--;
+        while (p > s)
+        {
+            char temp = *p;
+            *p-- = *s;
+            *s++ = temp;
+        }
+    }
+    return save;
+}
+
+void strxchng(char *s1, char *s2)
+{
+    while (*s1 || *s2)
+    {
+        char t = *s1;
+        *s1++ = *s2;
+        *s2++ = t;
+    }
+    *s1 = *s2 = '\0';
+}
+
+char *substring(char *s, size_t start, size_t size)
+{
+    size_t len = strlen(s);
+    if (start > len)
+    {
+        return NULL;
+    }
+
+    size_t actual_size = (len > start + size) ? size : len - start;
+
+    s += start;
+    return strcut(s, actual_size);
+}
