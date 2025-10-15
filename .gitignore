@@ -1,0 +1,26 @@
+# オブジェクトファイル
+*.o
+
+# 実行ファイル（仮に拡張子なしのバイナリ）
+a.out
+*.exe
+main
+get_unget_test
+
+# 依存関係ファイル（Makefileで生成されることが多い）
+*.d
+
+# ビルドディレクトリ（あれば）
+build/
+bin/
+obj/
+
+# エディタやOSの一時ファイル
+*.log
+*.swp
+*.tmp
+.DS_Store
+Thumbs.db
+
+# バックアップファイル
+*~
