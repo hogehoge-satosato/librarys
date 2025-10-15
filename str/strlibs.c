@@ -220,7 +220,8 @@ char *substring(char *s, size_t start, size_t size)
     size_t len = strlen(s);
     if (start > len)
     {
-        return NULL;
+        s[0] ='\0';
+        return s;
     }
 
     size_t actual_size = (len > start + size) ? size : len - start;

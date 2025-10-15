@@ -59,6 +59,7 @@ int main(void)
     strxchng(swap1, swap2);
     printf("%s\n%s\n", swap1, swap2);
 
+    // Substring
     char substrings[] = "ABCABCXABDNKHACABCBGT";
     char *substringed = substring(substrings, 5, 5);
     printf("%s\n", substringed);
