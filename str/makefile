@@ -1,8 +1,8 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c11
+CFLAGS = -Wall -Wextra -std=c11 -g
 
-SRC = strlibs.c main.c
-OBJ = $(SRC:.c=.o)
+SRC = strlibs.c main.c ../sort/sortlibs.c
+OBJ = $(patsubst %.c, build/%.o, $(notdir $(SRC)))
 
 TARGET = main
 
@@ -11,10 +11,16 @@ all: $(TARGET)
 $(TARGET): $(OBJ)
 	$(CC) $(CFLAGS) -o $@ $(OBJ)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -g -c $< -o $@
+build/%.o: %.c
+	@mkdir -p build
+	$(CC) $(CFLAGS) -c $< -o $@
+
+
+build/%.o: ../sort/%.c
+	@mkdir -p build
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ) $(TARGET)
+	rm -fr build $(TARGET)
 
 .PHONY: all clean

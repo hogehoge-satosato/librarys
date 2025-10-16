@@ -2,7 +2,6 @@
 #include <stdarg.h>
 #include <limits.h>
 #include <sys/types.h>
-#include <stdlib.h>
 
 char *strcut(char *s, size_t n)
 {
